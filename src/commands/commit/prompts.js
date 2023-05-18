@@ -22,6 +22,7 @@ export type Gitmoji = {
 export type Answers = {
   gitmoji: string,
   scope?: string,
+  storyId?: string,
   title: string,
   message?: string
 }
@@ -73,6 +74,15 @@ export default (
           {
             name: 'message',
             message: 'Enter the commit message:',
+            ...(message ? { default: message } : {})
+          }
+        ]
+      : []),
+    ...(configurationVault.getStoryIdPrompt()
+      ? [
+          {
+            name: 'storyId',
+            message: 'Enter the story id:',
             ...(message ? { default: message } : {})
           }
         ]
